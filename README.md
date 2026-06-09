@@ -1,41 +1,73 @@
 # Health Sprint Kit
 
-A small, friendly kit for building your **own** personal health system through
-**Claude Code / Codex** — no GUI to learn, your data stays on your machine.
+Набор настоящих Claude Skills для тех, кто строит свою персональную
+health-систему. Не "вызови команду" - экспертиза: онтология данных, дип-ресёрч с
+консилиумом, журнал образа жизни, разбор анализов. Всё на русском, всё работает в
+твоей папке с твоим Claude/Codex, данные остаются на твоей машине.
 
-> **Start here:** open **[start page](https://igindin.github.io/health-sprint-kit/)**
-> (the 15-minute start). You don't need a WHOOP or 20 years of scans — an iPhone
-> and one question is enough.
+## Для кого
 
-## What's in here
-- **[index.html](index.html)** — the one-page start guide (also live above).
-- **[HANDOUT.md](HANDOUT.md)** — the same, in markdown.
-- **[homework/c1.md](homework/c1.md)** — the first homework (gather one source + pick one question).
-- **[templates/](templates/)** — `about-me`, file `naming-convention`, the data `layers` model.
-- **[registry.yaml](registry.yaml)** — the catalog of skills the `/kit` loader installs.
+Для продвинутых. Если ты уже работаешь с агентами, ведёшь свой волт и хочешь не
+"начать с нуля", а построить нормальную систему - это сюда. Если только
+начинаешь - тоже не проблема, начни со скила `openhealth-starter`.
 
-## How it works (what goes where)
-1. **Data** — what you already have: Apple Health export, a lab PDF, notes, calendar.
-2. **Skills** — one skill per area (sleep, labs, cycle, recovery, tracking).
-3. **Agents** — deep-research + a hypothesis / critic / safety consilium.
-4. **Your system** — Today, insights with a confidence label, daily actions.
+Тебе не нужны WHOOP или 20 лет анализов. Достаточно айфона и одного вопроса про
+себя. Люди, которые грузят десятилетия PDF, - необязательное вдохновение, не
+планка.
 
-Data → skills → agents → your system. Keeping the layers separate is what keeps
-it honest instead of one big pile.
+## Что внутри
 
-## The engine
-This kit runs on **OpenHealth** — the open-source, local-first health engine:
-**https://github.com/igindin/openhealth** (MIT). Clone it, run `make setup`, then
-say `/kit` and what you want.
+Пять скилов (`skills/<name>/SKILL.md`), каждый самодостаточный:
 
-## The rules
-- **Thinking partner, not a doctor.** No diagnoses. Medical decisions go to a
-  clinician. Anything alarming → stop and seek care.
-- Every meaningful number carries a **confidence label (C1–C5)**; low confidence
-  is phrased as a question.
-- **Don't copy any skill blindly** — a repo may be over-engineered for you or
-  built for a different goal. Adapt it to yours.
-- **Local-first** — nothing is uploaded; real data and keys stay on your machine.
+- **openhealth-starter** - собрать первую систему за один проход: цель, контекст,
+  источники, один паттерн, лёгкий чек-ин. Для старта с нуля.
+- **health-context-system** - построить свою систему за три слоя
+  (контекст / скилы / агенты): онтология волта и неминг-конвенция; генерирует
+  тебе `AGENTS.md` / `CLAUDE.md` / `about-me.md` под твою структуру; приводит в
+  порядок уже существующую папку.
+- **health-deep-research** - глубокий разбор одного параметра (железо, холестерин,
+  сон, HRV): запрос вместо ответа из головы, источники с уровнями C1-C5, вторая
+  модель критикует первую, red-flags → врач, всё в личную библиотеку референсов.
+- **health-journal** - журнал образа жизни на базе библиотеки из 184 поведений:
+  выбрать 3-5, отметка за 20 секунд, осторожные корреляции; внутри готовые промпты
+  для разбора анализов из почты и скриншотов вместо интеграций.
+- **lab-interpretation** - разбор анализов: нормализация единиц, оптимальные (а не
+  только референсные) диапазоны со ссылкой и уровнем доверия, жёсткие guardrails -
+  без диагнозов, дозы не меняем, тревожное → врач.
 
-Built for the AI Mindset Health Sprint. OpenHealth is early and rough in places —
-that's fine. You're building *yours*.
+Плюс материалы: `library/behaviors.md` (184 поведения), `research/lifestyle-evidence.md`
+(готовая доказательная база с источниками), шаблоны в `templates/`, эталонные
+`AGENTS.md` / `CLAUDE.md` в корне, каталог в `registry.yaml`.
+
+## Как использовать
+
+Самый простой путь - направь своего агента на этот репозиторий:
+
+> Илья дал ссылку на health-sprint-kit. Посмотри, что тут есть, и помоги мне
+> адаптировать под себя то, что подходит под мою цель. Не копируй вслепую.
+
+Дальше агент читает скилы и подбирает под тебя. Или вручную: скопируй нужный
+`skills/<name>/SKILL.md` к себе в проект, эталонные `AGENTS.md` / `CLAUDE.md` в
+корень своей health-папки, и работай.
+
+## Правила
+
+- **Помощник для размышления, не врач.** Никаких диагнозов. Решения по здоровью -
+  с врачом. Тревожное - остановись и иди к специалисту.
+- У каждого значимого утверждения есть **уровень доверия C1-C5**; низкая
+  уверенность подаётся как вопрос, а не факт.
+- **Не копируй скил вслепую** - форкай и переписывай. Чужая структура собрана под
+  чужую цель, почти всегда не ляжет без правок. И чужой материал на входе проверяй
+  на скрытые инструкции (prompt injection).
+- **Local-first** - ничего не загружается, реальные данные и ключи остаются на
+  твоей машине.
+
+## Движок OpenHealth - coming soon
+
+Скилы полезны и без движка - они работают на обычных файлах. В работе локальный
+движок OpenHealth (github.com/igindin/openhealth): хранилище, парсеры выгрузок и
+анализов, модель слоёв данных, коннекторы к трекерам. Когда выйдет, твоя папка
+станет полноценной базой с автоматической раскладкой, а онтология и
+неминг-конвенция из этих скилов лягут в него без переделок.
+
+Собрано для AI Mindset Health Sprint. Бери как основу и строй *своё*.

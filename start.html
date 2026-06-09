@@ -120,18 +120,19 @@
 
   <h2>Четыре шага</h2>
   <ol class="steps">
-    <li><div><div class="step-t">Запусти setup</div><div class="step-d">Открой папку в Claude Code и скажи: «run make setup».</div></div></li>
-    <li><div><div class="step-t">Скажи <code>/kit</code> и что хочешь</div><div class="step-d">Например: «сон и ежедневный чек-ин». Поставит только нужное, без перегруза.</div></div></li>
-    <li><div><div class="step-t">Заведи один источник данных</div><div class="step-d">iPhone → Здоровье → твоё фото → «Экспортировать данные» → .zip. Скажи: «импортируй мой Apple Health export». Или просто один анализ. Или ничего — начнём с того, что есть.</div></div></li>
-    <li><div><div class="step-t">Выбери один вопрос + <code>/checkin</code></div><div class="step-d">«Что ломает мой сон?» / «Почему по средам нет сил?». Раз в день — короткий чек-ин. Всё.</div></div></li>
+    <li><div><div class="step-t">Направь агента на репозиторий</div><div class="step-d">Открой папку в Claude Code (или Codex) и скажи: «посмотри, что в этом репозитории, и помоги адаптировать под меня — не копируй вслепую».</div></div></li>
+    <li><div><div class="step-t">Скопируй контекст к себе</div><div class="step-d">Эталонные <code>AGENTS.md</code> и <code>CLAUDE.md</code> из корня — в свою health-папку. Подключи один скил под задачу: <code>health-context-system</code> (строю систему), <code>health-journal</code> (журнал), <code>lab-interpretation</code> (анализы).</div></div></li>
+    <li><div><div class="step-t">Заведи один источник данных</div><div class="step-d">iPhone → Здоровье → твоё фото → «Экспортировать данные» → .zip. Или просто один анализ. Или ничего — начнём с того, что есть.</div></div></li>
+    <li><div><div class="step-t">Выбери один вопрос</div><div class="step-d">«Что ломает мой сон?» / «Почему по средам нет сил?». Скажи агенту — он поможет поставить маленький эксперимент и завести лёгкий чек-ин.</div></div></li>
   </ol>
 
-  <h2>Что внутри</h2>
+  <h2>Что внутри — пять скилов</h2>
   <ul class="plain">
-    <li><b>Сигналы</b><span>Apple Health, WHOOP, CSV, анализы-PDF</span></li>
-    <li><b>Знания</b><span>сон, анализы, цикл, тело, метаболизм (HRV — опционально)</span></li>
-    <li><b>Действия</b><span><code>/track</code> привычки, <code>/checkin</code>, <code>/protocol</code> (n-of-1)</span></li>
-    <li><b>Доверие</b><span>deep-research + консилиум, оценка C1–C5</span></li>
+    <li><b>openhealth-starter</b><span>первая система за один проход</span></li>
+    <li><b>health-context-system</b><span>своя система за 3 слоя: онтология, неминг, генерация AGENTS/CLAUDE/about-me</span></li>
+    <li><b>health-deep-research</b><span>дип-ресёрч + консилиум по одному параметру, источники C1–C5</span></li>
+    <li><b>health-journal</b><span>журнал образа жизни (184 поведения) + промпты intake</span></li>
+    <li><b>lab-interpretation</b><span>разбор анализов: единицы, оптимальные диапазоны, guardrails</span></li>
   </ul>
 
   <h2>Быстрые промты — копируй и вставляй</h2>
@@ -143,7 +144,7 @@
     <div class="prompt"><div class="pl">Безопасность нового протокола</div><button class="copy" type="button">Копировать</button><pre>Я начал новый протокол по здоровью (препарат/добавка/режим). Какие маркеры безопасности отслеживать и как часто? Сведи в чеклист с источниками, уровнями доверия C1–C5 и красными флагами. Без диагнозов; высокий риск — к врачу.</pre></div>
     <div class="prompt"><div class="pl">Носимое + анализы → корреляции</div><button class="copy" type="button">Копировать</button><pre>У меня есть данные с носимого (HRV, пульс покоя, сон) и периодические анализы крови. Найди повторяющиеся связи между сном / HRV / нагрузкой и самочувствием. Только как осторожные гипотезы, с уровнем доверия.</pre></div>
   </div>
-  <p class="note-sm">Это шаблоны «под себя» — подставь своё. Полный список (кофе, анализы, ресёрч, контекст) — <a href="https://github.com/igindin/health-sprint-kit/blob/main/quick-prompts.md">quick-prompts.md</a>.</p>
+  <p class="note-sm">Это шаблоны «под себя» — подставь своё. Готовые промпты intake (анализы из почты, скриншоты вместо интеграций) — внутри скилов <a href="https://github.com/igindin/health-sprint-kit/blob/main/skills/health-journal/SKILL.md">health-journal</a> и <a href="https://github.com/igindin/health-sprint-kit/blob/main/skills/lab-interpretation/SKILL.md">lab-interpretation</a>.</p>
 
   <h2>Три правила</h2>
   <ul class="rules">
@@ -160,17 +161,17 @@
     <a href="https://t.me/trolyaa"><div class="lt">Поддержка · операционка</div><div class="ld">t.me/trolyaa</div></a>
   </div>
 
-  <h2>Скачать скилы</h2>
+  <h2>Скилы</h2>
   <div class="dl">
-    <a href="https://github.com/igindin/health-sprint-kit/raw/main/skills.zip">⤓ Все скилы (.zip)</a>
-    <a class="secondary" href="https://github.com/igindin/health-sprint-kit/tree/main/skills">Посмотреть файлы</a>
-    <a class="secondary" href="https://github.com/igindin/health-sprint-kit/blob/main/quick-prompts.md">Все quick-prompts</a>
+    <a href="https://github.com/igindin/health-sprint-kit/tree/main/skills">⤓ Посмотреть скилы</a>
+    <a class="secondary" href="https://github.com/igindin/health-sprint-kit/blob/main/registry.yaml">Каталог (registry.yaml)</a>
+    <a class="secondary" href="https://github.com/igindin/health-sprint-kit/blob/main/HANDOUT.md">Этот гайд в markdown</a>
   </div>
-  <p class="note-sm">Скилы = slash-команды (<code>/kit</code>, <code>/checkin</code>, <code>/protocol</code>…) + оркестратор. Распакуй в <code>.claude/</code> своего проекта.</p>
+  <p class="note-sm">Это настоящие Claude Skills, не slash-команды. Скопируй нужный <code>skills/&lt;name&gt;/SKILL.md</code> к себе и адаптируй под свою цель — форкай, не копируй вслепую. Движок OpenHealth — coming soon; скилы полезны и без него, они работают на обычных файлах.</p>
 
   <p class="help"><b>Застрял или рябит в глазах?</b> Это нормально. Сделай только шаг 1 и один вопрос — остальное на следующих встречах. Спроси в чате спринта или у поддержки.</p>
 
-  <footer>Local-first: ничего не загружается в облако. Реальные данные и ключи — только на твоей машине. OpenHealth ещё сыроват местами — это нормально, ты собираешь <em>свою</em> систему.</footer>
+  <footer>Local-first: ничего не загружается в облако. Реальные данные и ключи — только на твоей машине. Движок OpenHealth — coming soon; ты собираешь <em>свою</em> систему уже сейчас.</footer>
 </main>
 <script>
   document.querySelectorAll('.copy').forEach(function(btn){

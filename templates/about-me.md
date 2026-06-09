@@ -1,26 +1,57 @@
-# About me — personal context (template)
+# Обо мне - персональный контекст (шаблон)
 
-Copy this to your own context (e.g. `personal/about-me.md`) and fill it in. The
-agent reads it to ground every answer in *you*. Keep it short and honest; update
-as you go.
+Скопируй к себе (например `personal/about-me.md`) и заполни. Агент читает этот
+файл, чтобы каждый ответ был про **тебя**, а не из общей справки. Держи коротко и
+честно, обновляй по ходу. Пустые поля оставляй как "не указано" - не выдумывай за
+себя.
 
-## Who I am
-- name / age (optional) / where I am:
-- what my days look like (work, sleep window, training, stress):
+_Обновлено: ГГГГ-ММ-ДД_
 
-## My health goals (pick 1–3, concrete)
-- e.g. "feel steadier energy", "sleep through the night", "protect joints"
-- one question I want to answer this sprint:
+## Кто я и образ жизни
 
-## What data I have
-- devices/apps (iPhone Health, WHOOP, Oura, CGM, none — that's ok):
-- labs (how many, roughly which, latest date):
-- notes / diary / calendar I already keep:
+Анализы - это статика, снимок одного утра. Между ними - то, как ты живёшь каждый
+день. Здесь прячется большая часть ответа.
 
-## Where my data lives
-- folders/files the agent should know about:
-- what's still scattered (so we can pull it together):
+- Возраст / занятие / где я:
+- Режим дня и сон (когда ложусь, когда встаю, как сплю):
+- Питание (обычный день):
+- Движение и активность:
+- Кофе / алкоголь:
+- Стресс:
 
-## Boundaries
-- topics I'm sensitive about / want handled gently:
-- reminder: thinking partner, not a doctor. Decisions go to a clinician.
+## Что уже отслеживаю
+
+- Устройства (часы, кольцо: WHOOP, Oura, Apple Watch, Garmin, CGM, ничего - это
+  нормально):
+- Что веду руками (заметки, дневник):
+- Последние анализы (когда, что, примерно):
+- Где лежат мои данные (папки, файлы, что разбросано):
+
+## История и хроническое
+
+- Было раньше (операции, травмы, серьёзные болезни):
+- Есть сейчас постоянного:
+- Аллергии:
+- Семейная история (родители, близкие):
+
+## Что принимаю
+
+- Лекарства:
+- Витамины и добавки:
+- Курсами:
+
+## Моя цель
+
+Подробнее в `goal.md`. Здесь - в двух словах.
+
+- Главное, чего хочу:
+- Один вопрос на этот спринт:
+
+## Границы
+
+- Темы, на которые я чувствителен / прошу аккуратнее:
+- Напоминание: помощник для размышления, не врач. Решения - с врачом.
+
+## Открытые вопросы
+
+- (что прояснить в следующий раз)

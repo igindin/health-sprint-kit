@@ -125,7 +125,7 @@
   <h2>Два пути — выбери свой</h2>
   <ul class="rules">
     <li><span class="dot"></span><div><b>Лёгкий старт (рекомендуется): openhealth-starter, без движка, только файлы.</b> Промпт агенту → один skill → один паттерн → ежедневный check-in. Этого достаточно, чтобы начать. Большинству хватает надолго.</div></li>
-    <li><span class="dot"></span><div><b>Технический путь: OpenHealth repo + <code>make setup</code> + импорт Apple Health (позже, по желанию).</b> Когда захочешь автоматическое хранилище и парсеры: клонируешь движок OpenHealth, один раз <code>make setup</code>, дальше импорт выгрузки Apple Health. Папка, собранная на лёгком старте, ляжет в него без переделок.</div></li>
+    <li><span class="dot"></span><div><b>Технический путь: рабочий движок OpenHealth, когда захочешь больше.</b> Два честных уровня. <b>60 секунд, ноль установки:</b> на странице OpenHealth жмёшь Code → Download ZIP, открываешь <code>ui/web/OpenHealth.command</code> (macOS) или <code>index.html</code> двойным кликом — премиум-дашборд на демо-данных. <b>10 минут, свои данные:</b> одна команда <code>bash setup.sh</code>, перетягиваешь выгрузку Apple Health. Папка с лёгкого старта ложится в движок без переделок.</div></li>
   </ul>
 
   <h2>Как это устроено — что где</h2>
@@ -141,12 +141,22 @@
   </div>
 
   <h2>Технический путь — подробнее</h2>
-  <p class="lede" style="margin:0 0 14px;">Это для второго пути, когда захочешь движок и автоматический импорт. Новичку сюда идти не обязательно — лёгкого старта выше достаточно.</p>
+  <p class="lede" style="margin:0 0 14px;">Движок OpenHealth уже рабочий. Это для второго пути, когда захочешь дашборд и автоматический импорт. Новичку сюда идти не обязательно — лёгкого старта выше достаточно. Готовый гид — <a href="https://github.com/igindin/openhealth/blob/main/docs/START-HERE.md">docs/START-HERE.md</a>.</p>
   <ol class="steps">
-    <li><div><div class="step-t">Клонируй движок и запусти setup</div><div class="step-d">Склонируй <a href="https://github.com/igindin/openhealth">OpenHealth repo</a>, один раз выполни <code>make setup</code> — поставит движок и создаст локальное хранилище.</div></div></li>
-    <li><div><div class="step-t">Импортируй Apple Health (по желанию)</div><div class="step-d">iPhone → Здоровье → твоё фото → «Экспортировать данные» → <code>.zip</code>. Дальше движок разложит выгрузку по дням и слоям. Можно начать и с одного анализа.</div></div></li>
+    <li><div><div class="step-t">60 секунд: ZIP → двойной клик → дашборд</div><div class="step-d">На странице <a href="https://github.com/igindin/openhealth">OpenHealth</a> жмёшь Code → Download ZIP, распаковываешь, открываешь <code>ui/web/OpenHealth.command</code> (macOS) или <code>index.html</code> (Windows/Linux). Премиум-дашборд на демо-данных: восстановление, тренды, корреляции, отчёт. Без агента, без терминала.</div></div></li>
+    <li><div><div class="step-t">10 минут: свои данные одной командой</div><div class="step-d"><code>bash setup.sh</code> — скрипт проверит Python, заведёт локальную папку и предложит перетащить выгрузку Apple Health (iPhone → Здоровье → твоё фото → «Экспортировать медданные» → <code>.zip</code>). Можно начать и с одного анализа.</div></div></li>
     <li><div><div class="step-t">Перенеси папку с лёгкого старта</div><div class="step-d">Твои <code>goal.md</code> / <code>about-me.md</code> / <code>checkin.md</code> ложатся в движок без переделок — онтология и неминг те же.</div></div></li>
   </ol>
+
+  <h2>Что внутри OpenHealth сегодня</h2>
+  <p class="lede" style="margin:0 0 14px;">Витрина, не обязаловка — лёгкого старта достаточно, чтобы начать сегодня. Но если захочешь больше, рядом уже стоит вот это:</p>
+  <ul class="plain">
+    <li><b>Дашборд с агент-кнопками</b><span>«сгенерировать инсайт», «пересчитать корреляции» реально запускают твой Claude/Codex над локальными данными</span></li>
+    <li><b>Telegram-бот intake</b><span><code>/checkin</code>, <code>/today</code>, <code>/ask</code> — пишешь боту, данные ложатся к тебе на диск</span></li>
+    <li><b>29 источников данных</b><span>прямые API с инструкциями по ключам, Withings уже live</span></li>
+    <li><b>Каталог 215 поведений</b><span>журнал вырос с 184 до 215 + кастомные параметры</span></li>
+  </ul>
+  <p class="note-sm">Подробнее: <a href="https://github.com/igindin/openhealth/blob/main/docs/TELEGRAM.md">docs/TELEGRAM.md</a> · <a href="https://github.com/igindin/openhealth/blob/main/docs/INTEGRATIONS.md">docs/INTEGRATIONS.md</a>. Всё локально: данные и ключи остаются у тебя.</p>
 
   <h2>Скилы — начни с одного</h2>
   <p class="lede" style="margin:0 0 14px;"><b>Начни с одного skill: openhealth-starter.</b> Он собирает первую систему за проход. Остальные — посмотреть позже, когда появится конкретная задача.</p>
@@ -154,7 +164,7 @@
     <li><b>openhealth-starter</b><span>начни отсюда — первая система за один проход</span></li>
     <li><b>health-context-system</b><span>позже: своя система за 3 слоя — онтология, неминг, генерация AGENTS/CLAUDE/about-me</span></li>
     <li><b>health-deep-research</b><span>позже: дип-ресёрч + консилиум по одному параметру, источники C1–C5</span></li>
-    <li><b>health-journal</b><span>позже: журнал образа жизни (184 поведения) + промпты intake</span></li>
+    <li><b>health-journal</b><span>позже: журнал образа жизни (184 поведения; в openhealth — 215) + промпты intake</span></li>
     <li><b>lab-interpretation</b><span>позже: разбор анализов — единицы, оптимальные диапазоны, guardrails</span></li>
   </ul>
 
@@ -191,11 +201,11 @@
     <a class="secondary" href="https://github.com/igindin/health-sprint-kit/blob/main/registry.yaml">Каталог (registry.yaml)</a>
     <a class="secondary" href="https://github.com/igindin/health-sprint-kit/blob/main/HANDOUT.md">Этот гайд в markdown</a>
   </div>
-  <p class="note-sm">Это настоящие Claude Skills, не slash-команды. Скопируй нужный <code>skills/&lt;name&gt;/SKILL.md</code> к себе и адаптируй под свою цель — форкай, не копируй вслепую. Движок OpenHealth — coming soon; скилы полезны и без него, они работают на обычных файлах.</p>
+  <p class="note-sm">Это настоящие Claude Skills, не slash-команды. Скопируй нужный <code>skills/&lt;name&gt;/SKILL.md</code> к себе и адаптируй под свою цель — форкай, не копируй вслепую. Скилы полезны сами по себе, они работают на обычных файлах; рабочий движок OpenHealth — рядом, когда захочешь больше.</p>
 
   <p class="help"><b>Застрял или рябит в глазах?</b> Это нормально. Сделай только шаг 1 и один вопрос — остальное на следующих встречах. Спроси в чате спринта или у поддержки.</p>
 
-  <footer>Local-first: ничего не загружается в облако. Реальные данные и ключи — только на твоей машине. Движок OpenHealth — coming soon; ты собираешь <em>свою</em> систему уже сейчас.</footer>
+  <footer>Local-first: ничего не загружается в облако. Реальные данные и ключи — только на твоей машине. Движок OpenHealth уже рабочий; ты собираешь <em>свою</em> систему уже сейчас.</footer>
 </main>
 <script>
   document.querySelectorAll('.copy').forEach(function(btn){

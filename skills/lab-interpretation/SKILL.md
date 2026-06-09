@@ -7,7 +7,9 @@ description: >-
   неопределённость явно, red-flags → врач, дозы не меняем. Не требует
   openhealth-движка. Используй, когда человек говорит "разбери мой анализ
   крови", "что в анализах обсудить с врачом", "переведи единицы анализа",
-  "оптимальный диапазон ферритина", "прочитай мой lab PDF".
+  "оптимальный диапазон ферритина", "прочитай мой lab PDF". Англоязычные
+  триггеры: "interpret my blood test", "read my lab PDF", "convert lab units",
+  "optimal ferritin range", "what to discuss with my doctor".
 ---
 
 # lab-interpretation

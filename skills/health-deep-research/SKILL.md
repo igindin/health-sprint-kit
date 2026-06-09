@@ -8,7 +8,9 @@ description: >-
   библиотеку референсов research/<параметр>.md. Не требует openhealth-движка.
   Используй, когда человек говорит "что известно про железо", "разберись с
   холестерином", "собери источники по HRV", "research сон", "почему мигрень",
-  "собери доказательную базу по <параметр>".
+  "собери доказательную базу по <параметр>". Англоязычные триггеры: "what's
+  known about iron", "deep research on cholesterol", "research my HRV",
+  "build an evidence base for <параметр>".
 ---
 
 # health-deep-research

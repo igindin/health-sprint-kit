@@ -6,7 +6,9 @@ description: >-
   - кладёшь этот файл к себе и направляешь сюда Claude/Codex. Ведёт пошагово,
   один вопрос за раз. Используй, когда человек говорит "хочу начать следить за
   здоровьем", "собери мне health-систему", "с чего начать", "помоги с моими
-  данными о здоровье".
+  данными о здоровье". Англоязычные триггеры: "start tracking my health",
+  "build me a health system", "where do I start", "set up my health folder",
+  "help with my health data".
 ---
 
 # openhealth-starter

@@ -149,21 +149,23 @@ AGENTS.md, CLAUDE.md - контракт для агента
 Предсказуемые имена = агент (и будущий человек) находит что угодно. Закрепи в
 `AGENTS.md`.
 
-Паттерн: `<область>__<тип>__<тема>__<ГГГГ-ММ-ДД>.<ext>`
+Паттерн (ключевые элементы в фигурных скобках, дата в конце после тире):
+`{область} {тип} короткое описание – ГГГГ-ММ-ДД.<ext>`
 
-- **область**: sleep | hrv | labs | body | metabolic | cycle | mental | notes
-- **тип**: export | lab | note | protocol | insight | photo | research
-- **тема**: короткий слаг (lowercase-with-dashes)
-- **дата**: дата, о которой данные (не дата сохранения), в ISO - чтобы
-  сортировались
+- **{область}**: `{pulse}` `{sleep}` `{cycle}` `{body}` `{metabolic}` `{skin}` `{labs}` `{mental}` `{notes}` `{self}`
+- **{тип}**: `{export}` `{lab}` `{note}` `{protocol}` `{insight}` `{research}` `{photo}`
+- **описание**: на языке содержимого, строчными, через пробелы
+- **дата**: дата, о которой данные (не дата сохранения), в ISO в конце после тире (`–`, en-dash)
+- максимум 80 символов
 
 Примеры:
-- `labs__lab__blood-panel__2026-03-01.pdf`
-- `hrv__export__apple-health__2026-06-09.zip`
-- `body__protocol__late-coffee-vs-sleep__2026-06-10.md`
+- `{labs} {lab} blood panel – 2026-03-01.pdf`
+- `{sleep} {export} apple health – 2026-06-09.zip`
+- `{body} {protocol} late coffee vs sleep – 2026-06-10.md`
 
-Правила: один субъект на файл; сырьё в `sources/` неизменно (правки - в
-производные файлы); без имён/email/секретов в именах файлов.
+Правила: спецсимволы только `{}`, `–` и пробелы; сырьё в `sources/` неизменно
+(правки — в производные файлы); без имён/email/секретов в именах файлов.
+Полный шаблон: `templates/naming-convention.md`.
 
 ## Генерация AGENTS.md и CLAUDE.md
 

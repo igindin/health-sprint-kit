@@ -1,23 +1,44 @@
-# File naming convention (template)
+# Конвенция именования файлов
 
-Predictable names = your agent (and future you) can find anything. Keep it boring
-and consistent.
+Ключевые элементы — в фигурных скобках `{}`, дата всегда в конце после тире. Предсказуемые имена = агент (и будущий ты) найдёт что угодно.
 
-## Pattern
-`<area>__<kind>__<subject>__<YYYY-MM-DD>.<ext>`
+## Формат
+```
+{area} {type} короткое описание – YYYY-MM-DD.ext
+```
 
-- **area**: pulse | sleep | cycle | body | metabolic | skin | labs | mental | notes
-- **kind**: export | lab | note | protocol | insight | photo | research
-- **subject**: short slug (lowercase-with-dashes)
-- **date**: the date the data is *about* (not when you saved it)
+- Ключевые элементы в фигурных скобках: `{area}` `{type}`
+- Описание — на языке содержимого (RU или EN), строчными, через пробелы
+- Дата ВСЕГДА в конце после тире (`–`, en-dash, не дефис и не em-dash)
+- Максимум 80 символов
+- Каждый текстовый файл — с YAML frontmatter (`tags`)
 
-## Examples
-- `labs__lab__blood-panel__2024-06-01.pdf`
-- `sleep__export__apple-health__2026-06-09.zip`
-- `body__protocol__late-coffee-vs-sleep__2026-06-10.md`
-- `pulse__insight__weekend-recovery-dip__2026-06-12.md`
+## {area} — домен здоровья
+`{pulse}` `{sleep}` `{cycle}` `{body}` `{metabolic}` `{skin}` `{labs}` `{mental}` `{notes}` `{self}`
 
-## Rules
-- One subject per file. Dates in ISO (`YYYY-MM-DD`) so they sort.
-- Raw exports stay immutable — never edit an archived source; derive new files.
-- No personal names / emails / secrets in filenames.
+## {type} — тип содержимого
+| Тип | Что это |
+|-----|---------|
+| `{export}` | выгрузка с трекера (WHOOP, Apple Health, Oura) |
+| `{lab}` | анализы |
+| `{note}` | заметка |
+| `{protocol}` | протокол / n-of-1 эксперимент |
+| `{insight}` | вывод, находка |
+| `{research}` | дип-ресёрч |
+| `{photo}` | фото (еда, продукт, кожа) |
+
+## {status} — опционально
+`{draft}` `{review}` `{done}`
+
+## Примеры
+- `{labs} {lab} blood panel – 2024-06-01.pdf`
+- `{sleep} {export} apple health – 2026-06-09.zip`
+- `{body} {protocol} late coffee vs sleep – 2026-06-10.md`
+- `{pulse} {insight} weekend recovery dip – 2026-06-12.md`
+
+## Правила
+1. Дата ВСЕГДА в конце — никогда в середине (ISO `YYYY-MM-DD`, чтобы сортировались).
+2. Не добавлять имя интерфейса (Claude Code, Cursor) в название.
+3. Спецсимволы только `{}`, `–` и пробелы.
+4. Сырые экспорты неизменяемы — не редактируй архивный источник, выводи новые файлы.
+5. Без личных имён / email / секретов в именах файлов.

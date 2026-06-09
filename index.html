@@ -106,6 +106,28 @@
 
   <p class="reassure"><b>Старт может быть простым: айфон и один вопрос про себя.</b> А любишь глубину и большие массивы данных - велком, это тоже твой путь.</p>
 
+  <h2>Если у тебя ещё нет своей Health OS — делай так</h2>
+  <p class="lede" style="margin:0 0 14px;">Это главный маршрут для новичка. Четыре шага, ничего ставить не надо. Начни с одного: скопируй промпт ниже своему агенту.</p>
+
+  <div class="prompts">
+    <div class="prompt"><div class="pl">Шаг 1 · Скопируй это своему агенту</div><button class="copy" type="button">Копировать</button><pre>Илья дал ссылку на health-sprint-kit: https://github.com/igindin/health-sprint-kit. Я новичок, своей Health OS ещё нет. Не ставь всё подряд. Сначала прочитай README и skill openhealth-starter. Помоги мне собрать минимальную локальную health-папку: цель, контекст, источники данных, один паттерн и простой ежедневный check-in. Не давай медицинских рекомендаций и не копируй чужие skills без адаптации.</pre></div>
+  </div>
+
+  <ol class="steps" style="margin-top:12px;">
+    <li><div><div class="step-t">Отдай промпт агенту</div><div class="step-d">Открой свою папку в Claude Code (или Codex), вставь промпт выше. Агент прочитает README и skill <code>openhealth-starter</code> и поведёт тебя по одному вопросу за раз.</div></div></li>
+    <li><div><div class="step-t">Пройди openhealth-starter</div><div class="step-d">Это один skill, который собирает первую систему за проход: твоя цель, контекст про тебя, какие данные уже есть. Без движка, только файлы.</div></div></li>
+    <li><div><div class="step-t">Выбери один паттерн и один вопрос</div><div class="step-d">«Что ломает мой сон?» / «Почему по средам нет сил?». Один, не три. Агент поможет поставить маленький n-of-1 эксперимент.</div></div></li>
+    <li><div><div class="step-t">Заведи простой ежедневный check-in</div><div class="step-d">Пара строк в день про самочувствие и паттерн. 20 секунд, без тяжёлого трекинга.</div></div></li>
+  </ol>
+
+  <p class="reassure" style="background:var(--accent-soft);border-color:#D7E6D6;"><b>Результат первого дня — это папка, а не «установил движок».</b> В ней лежат: <code>goal.md</code>, <code>about-me.md</code>, <code>data-sources.md</code>, <code>checkin.md</code> и <code>AGENTS.md</code>. Появились эти файлы — значит, ты сделал. Движок и импорт данных можно подключить позже.</p>
+
+  <h2>Два пути — выбери свой</h2>
+  <ul class="rules">
+    <li><span class="dot"></span><div><b>Лёгкий старт (рекомендуется): openhealth-starter, без движка, только файлы.</b> Промпт агенту → один skill → один паттерн → ежедневный check-in. Этого достаточно, чтобы начать. Большинству хватает надолго.</div></li>
+    <li><span class="dot"></span><div><b>Технический путь: OpenHealth repo + <code>make setup</code> + импорт Apple Health (позже, по желанию).</b> Когда захочешь автоматическое хранилище и парсеры: клонируешь движок OpenHealth, один раз <code>make setup</code>, дальше импорт выгрузки Apple Health. Папка, собранная на лёгком старте, ляжет в него без переделок.</div></li>
+  </ul>
+
   <h2>Как это устроено — что где</h2>
   <div class="map">
     <div class="row r1"><span class="tag">Данные</span><span class="desc"><b>Что есть про тебя</b><span>Apple Health, анализы, заметки о сне/энергии, календарь</span></span></div>
@@ -118,24 +140,26 @@
     <p class="map-cap">Данные → скилы → агенты → твоя персональная система. Слои отдельные — поэтому система честная, а не «всё в одной куче».</p>
   </div>
 
-  <h2>Четыре шага</h2>
+  <h2>Технический путь — подробнее</h2>
+  <p class="lede" style="margin:0 0 14px;">Это для второго пути, когда захочешь движок и автоматический импорт. Новичку сюда идти не обязательно — лёгкого старта выше достаточно.</p>
   <ol class="steps">
-    <li><div><div class="step-t">Направь агента на репозиторий</div><div class="step-d">Открой папку в Claude Code (или Codex) и скажи: «посмотри, что в этом репозитории, и помоги адаптировать под меня — не копируй вслепую».</div></div></li>
-    <li><div><div class="step-t">Скопируй контекст к себе</div><div class="step-d">Эталонные <code>AGENTS.md</code> и <code>CLAUDE.md</code> из корня — в свою health-папку. Подключи один скил под задачу: <code>health-context-system</code> (строю систему), <code>health-journal</code> (журнал), <code>lab-interpretation</code> (анализы).</div></div></li>
-    <li><div><div class="step-t">Заведи один источник данных</div><div class="step-d">iPhone → Здоровье → твоё фото → «Экспортировать данные» → .zip. Или просто один анализ. Или ничего — начнём с того, что есть.</div></div></li>
-    <li><div><div class="step-t">Выбери один вопрос</div><div class="step-d">«Что ломает мой сон?» / «Почему по средам нет сил?». Скажи агенту — он поможет поставить маленький эксперимент и завести лёгкий чек-ин.</div></div></li>
+    <li><div><div class="step-t">Клонируй движок и запусти setup</div><div class="step-d">Склонируй <a href="https://github.com/igindin/openhealth">OpenHealth repo</a>, один раз выполни <code>make setup</code> — поставит движок и создаст локальное хранилище.</div></div></li>
+    <li><div><div class="step-t">Импортируй Apple Health (по желанию)</div><div class="step-d">iPhone → Здоровье → твоё фото → «Экспортировать данные» → <code>.zip</code>. Дальше движок разложит выгрузку по дням и слоям. Можно начать и с одного анализа.</div></div></li>
+    <li><div><div class="step-t">Перенеси папку с лёгкого старта</div><div class="step-d">Твои <code>goal.md</code> / <code>about-me.md</code> / <code>checkin.md</code> ложатся в движок без переделок — онтология и неминг те же.</div></div></li>
   </ol>
 
-  <h2>Что внутри — пять скилов</h2>
+  <h2>Скилы — начни с одного</h2>
+  <p class="lede" style="margin:0 0 14px;"><b>Начни с одного skill: openhealth-starter.</b> Он собирает первую систему за проход. Остальные — посмотреть позже, когда появится конкретная задача.</p>
   <ul class="plain">
-    <li><b>openhealth-starter</b><span>первая система за один проход</span></li>
-    <li><b>health-context-system</b><span>своя система за 3 слоя: онтология, неминг, генерация AGENTS/CLAUDE/about-me</span></li>
-    <li><b>health-deep-research</b><span>дип-ресёрч + консилиум по одному параметру, источники C1–C5</span></li>
-    <li><b>health-journal</b><span>журнал образа жизни (184 поведения) + промпты intake</span></li>
-    <li><b>lab-interpretation</b><span>разбор анализов: единицы, оптимальные диапазоны, guardrails</span></li>
+    <li><b>openhealth-starter</b><span>начни отсюда — первая система за один проход</span></li>
+    <li><b>health-context-system</b><span>позже: своя система за 3 слоя — онтология, неминг, генерация AGENTS/CLAUDE/about-me</span></li>
+    <li><b>health-deep-research</b><span>позже: дип-ресёрч + консилиум по одному параметру, источники C1–C5</span></li>
+    <li><b>health-journal</b><span>позже: журнал образа жизни (184 поведения) + промпты intake</span></li>
+    <li><b>lab-interpretation</b><span>позже: разбор анализов — единицы, оптимальные диапазоны, guardrails</span></li>
   </ul>
 
-  <h2>Быстрые промты — копируй и вставляй</h2>
+  <h2>Промты на потом — когда система уже стоит</h2>
+  <p class="lede" style="margin:0 0 14px;">Первый промпт для старта — наверху страницы. Эти — когда у тебя уже есть папка и захочется копнуть. Копируй и подставляй своё.</p>
   <div class="prompts">
     <div class="prompt"><div class="pl">Всё разбросано → собрать в одно</div><button class="copy" type="button">Копировать</button><pre>Мои данные о здоровье лежат в разных местах: таблицы, заметки в чатах, папки, календарь, экспорт телефона. Собери их в один таймлайн, разложи по слоям и покажи, где что и чего не хватает.</pre></div>
     <div class="prompt"><div class="pl">Импорт Apple Health</div><button class="copy" type="button">Копировать</button><pre>У меня есть экспорт Apple Health в ~/Downloads (.zip). Импортируй его, разложи по дням и слоям, покажи сводку: какие метрики и за какой период.</pre></div>
